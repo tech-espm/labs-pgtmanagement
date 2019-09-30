@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PGTManagement.Gateway.PGTData;
+using wExponencial.Service;
 
 namespace PGTManagement
 {
@@ -30,6 +32,14 @@ namespace PGTManagement
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            AppSetting appSetting = Configuration.Get<AppSetting>();
+            services.AddSingleton(instance => appSetting);
+
+            services.AddTransient<IUserClient, UserClient>();
+
+            string StorageConnectionString = Configuration["StorageConnectionString"];
+            services.AddTransient(instance => new StorageService(StorageConnectionString));
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
