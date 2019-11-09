@@ -18,5 +18,7 @@ namespace PGTManagement.Gateway.PGTData.Requests
         public int FileID { get; set; }
 
         public int ReviewTypeID { get; set; }
+
+        public int UserID { get; set; }
     }
 }
