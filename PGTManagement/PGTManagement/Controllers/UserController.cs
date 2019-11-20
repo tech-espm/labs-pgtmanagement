@@ -21,7 +21,7 @@ namespace PGTManagement.Controllers
 
         }
 
-        public IActionResult Index()
+        public ViewResult Index()
         {
             return View();
         }

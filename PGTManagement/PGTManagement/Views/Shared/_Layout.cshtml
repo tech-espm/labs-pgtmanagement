@@ -43,15 +43,15 @@
     <!-- Wrapper-->
     <div id="wrapper" class="@Html.PageClass()">
         <!-- Navigation -->
-        <partial name="_Navigation" />
+        <partial name="Navigation" />
         <!-- Page wraper -->
         <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
             <!-- Top Navbar -->
-            <partial name="_TopNavbar" />
+            <!-- <partial name="_TopNavbar" /> -->
             <!-- Main view  -->
             @RenderBody()
             <!-- Footer -->
-            <partial name="_Footer" />
+            <!-- <partial name="_Footer" /> -->
         </div>
         <!-- End page wrapper-->
     </div>
