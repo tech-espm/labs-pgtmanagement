@@ -1,0 +1,153 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+body{
+    background-color: rgb(117, 117, 117);
+    font-size: 0.8em;
+}
+textarea {
+    resize: none;
+}
+.pdf-file{  
+    width: 100%;
+    height: 100vh;
+}
+
+.hover-controller {
+    pointer-events: none;
+    position: fixed;
+    z-index: 1;
+    background-color: #0f0;
+}
+.bottom-controller{
+    bottom: 0;
+    width: 100%;
+    height: 15vh;
+}
+.left-controller{
+    width: 23.5%;
+    height: 100vh;   
+}
+.right-controller {
+    right: 0;
+    width: 23.5%;
+    height: 100vh;
+}
+
+
+.menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgb(48,48,48);
+    min-height: 9vh;
+    width: 100%;
+    box-shadow: 0px 0.5px 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+.grade {
+    position: fixed;
+    top: 9.3vh;
+    margin-left: 0.5%;
+    min-height: 10vh;
+    width: 23%;
+    background-color: rgb(114, 0, 12);
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 11px;
+    box-shadow: 0px 0.5px 6px 3px rgba(0, 0, 0, 0.2);
+}
+.score1 {
+    width: 100%;
+    text-align: right;
+    color: #fff;
+}
+
+.score{
+    margin:0;
+    margin-top:2vh;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.score-value{
+    width: 85%;
+    float: left;
+    margin-left: 5%;
+    border-radius: 30px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #fff;
+    padding-left: 8px;
+    height: 4vh;
+}
+.final-score{
+    margin-bottom: 2vh;
+}
+.score2 {
+    width: 70%;
+    text-align: center;
+}
+.comment-box {
+    position: fixed;
+    width: 23%;
+    min-height: 42vh;
+    left: 0.5%;
+    bottom: 2vh;
+    border-radius:11px;
+    background-color: rgb(234, 235, 197);
+    box-shadow: 0px 0.5px 6px 3px rgba(0, 0, 0, 0.2);
+}
+.comment-send{
+    position: fixed;
+    width: 26%;
+    height: 44vh;
+    right: 1.8%;
+    top: 9.3vh;
+    background-color: rgb(234, 235, 197);
+    box-shadow: 0px 0.5px 6px 3px rgba(0, 0, 0, 0.2);
+
+}
+.comment-textarea{
+    height: 27vh;
+    width: 90%;
+    margin: 5%;
+    border-style: none;
+    background-color: transparent;
+}
+.add-comment{
+    background-color: rgb(168, 5, 50);
+    color: #fff;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(168, 5, 50);
+    border-radius: 60px;
+    font-size: 1.3em;
+    padding: 0.7em;
+}
+.page{
+    
+    width: 40%;
+    height: 20000px;
+    background-color: #fff;
+    box-shadow: 0px 0.5px 6px 3px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+.send{
+    clear:both;
+    background-color: #ff0000;
+    
+}

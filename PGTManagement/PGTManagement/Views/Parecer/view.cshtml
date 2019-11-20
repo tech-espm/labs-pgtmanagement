@@ -1,0 +1,86 @@
+﻿
+@{
+    Layout = "";
+    ViewBag.Title = "Visualizar Parecer";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="~/Style/bootstrap.min.css">
+    <title>View Parecer - Gerenciamento de TCCs</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Style/view.css">
+
+</head>
+
+<body>
+    <form action="send">
+        <div class="hover-controller bottom-controller"></div>
+        <div class="hover-controller left-controller"></div>
+        <div class="hover-controller right-controller"></div>
+        <section class="grade">
+            <div class="score">
+                <div class="score1">
+                    <label for="content">Conteúdo</label>
+                </div>
+                <div class="score2">
+                    <input type="text" name="firstname" id="content" class="score-value">
+                </div>
+            </div>
+            <div class="score">
+                <div class="score1">
+                    <label for="relevance">Relevância</label>
+                </div>
+                <div class="score2">
+                    <input type="text" name="firstname" id="relevance" class="score-value">
+                </div>
+            </div>
+            <div class="score">
+                <div class="score1">
+                    <label for="project">Projeto de Pesquisa</label>
+                </div>
+                <div class="score2">
+                    <input type="text" name="firstname" id="project" class="score-value">
+                </div>
+            </div>
+            <div class="score">
+                <div class="score1">
+                    <label for="report">Relatório de Pesquisa</label>
+                </div>
+                <div class="score2">
+                    <input type="text" name="firstname" id="report" class="score-value">
+                </div>
+            </div>
+            <div class="score">
+                <div class="score1">
+                    <label for="memorial">Memorial Individual</label>
+                </div>
+                <div class="score2">
+                    <input type="text" name="firstname" id="memorial" class="score-value">
+                </div>
+            </div>
+            <div class="score final-score">
+                <div class="score1">
+                    <label for="regulation">De Acordo com o Regulamento</label>
+                </div>
+                <div class="score2">
+                    <input type="text" name="firstname" id="regulation" class="score-value">
+                </div>
+            </div>
+        </section>
+
+        <section class="comment-send">
+            <textarea name="comment-textarea" class="comment-textarea"></textarea>
+            <button class="add-comment">Adicionar Comentário</button>
+        </section>
+    </form>
+        <embed src=" ~/PDF/ed4.pdf" type="application/pdf" class="pdf-file" />
+    
+</body>
+
+</html>

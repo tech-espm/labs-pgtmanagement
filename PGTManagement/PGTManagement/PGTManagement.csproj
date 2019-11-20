@@ -5,6 +5,10 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="Views\Home\Index.cshtml" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -17,6 +21,34 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\Scripts\all.js" />
+    <None Include="wwwroot\Scripts\bootstrap.bundle.js" />
+    <None Include="wwwroot\Scripts\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\Scripts\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\Scripts\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\Scripts\bootstrap.js" />
+    <None Include="wwwroot\Scripts\bootstrap.js.map" />
+    <None Include="wwwroot\Scripts\bootstrap.min.js" />
+    <None Include="wwwroot\Scripts\bootstrap.min.js.map" />
+    <None Include="wwwroot\Scripts\jquery-3.3.1.intellisense.js" />
+    <None Include="wwwroot\Scripts\jquery-3.3.1.js" />
+    <None Include="wwwroot\Scripts\jquery-3.3.1.min.js" />
+    <None Include="wwwroot\Scripts\jquery-3.3.1.min.map" />
+    <None Include="wwwroot\Scripts\jquery-3.3.1.slim.js" />
+    <None Include="wwwroot\Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="wwwroot\Scripts\jquery-3.3.1.slim.min.map" />
+    <None Include="wwwroot\Scripts\jquery.js" />
+    <None Include="wwwroot\Scripts\jquery.validate-vsdoc.js" />
+    <None Include="wwwroot\Scripts\jquery.validate.js" />
+    <None Include="wwwroot\Scripts\jquery.validate.min.js" />
+    <None Include="wwwroot\Scripts\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\Scripts\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\Scripts\modernizr-2.8.3.js" />
+    <None Include="wwwroot\Scripts\popper.min.js" />
   </ItemGroup>
 
 </Project>

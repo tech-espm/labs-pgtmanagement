@@ -1,108 +1,59 @@
-﻿@using PGTManagement.Helpers
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - PGT Management</title>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 
-    <link rel="icon" href="@Url.Content("~/images/favicon.ico")" />
+    <title>@ViewBag.Title - Gerenciamento de TCCs</title>
 
-    @if (IsSectionDefined("Styles"))
-    {@RenderSection("Styles", required: false)}
-    <environment names="Development">
-        <link rel="stylesheet" href="~/lib_bower/bootstrap/dist/css/bootstrap.css" />
-        <link href="~/font-awesome/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" href="~/lib_bower/metisMenu/dist/metisMenu.css" />
-        <link href="~/css/plugins/steps/jquery.steps.css" rel="stylesheet">
-        <link href="~/css/plugins/select2/select2.min.css" rel="stylesheet">
-        <link href="~/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
-        <link href="~/lib_bower/sweetalert/dist/sweetalert.css" rel="stylesheet">
-        <link rel="stylesheet" href="~/css/animate.css" />
-        <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-        <link href="~/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
-        <link href="~/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-
-    </environment>
-    <environment names="Staging,Production">
-        <link rel="stylesheet" href="~/lib_bower/bootstrap/dist/css/bootstrap.css" />
-        <link href="~/font-awesome/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" href="~/lib_bower/metisMenu/dist/metisMenu.css" />
-        <link href="~/css/plugins/select2/select2.min.css" rel="stylesheet">
-        <link href="~/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
-        <link href="~/css/plugins/steps/jquery.steps.css" rel="stylesheet">
-        <link href="~/lib_bower/sweetalert/dist/sweetalert.css" rel="stylesheet">
-        <link rel="stylesheet" href="~/css/animate.css" />
-        <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-        <link href="~/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
-        <link href="~/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-    </environment>
-
+    <link href="@Url.Content("https://fonts.googleapis.com/css?family=Mansalva&display=swap")" rel="stylesheet" />
+    <link href="~/Style/main.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
-    <!-- Wrapper-->
-    <div id="wrapper" class="@Html.PageClass()">
-        <!-- Navigation -->
-        <partial name="Navigation" />
-        <!-- Page wraper -->
-        <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
-            <!-- Top Navbar -->
-            <!-- <partial name="_TopNavbar" /> -->
-            <!-- Main view  -->
-            @RenderBody()
-            <!-- Footer -->
-            <!-- <partial name="_Footer" /> -->
+    <section>
+        <div class="container-fluid height">
+            <div class="row">
+                <div class="menu-bar col-md-2 height bg-white">
+                    <img src="~/img/espm_logo.png" alt="Logo da ESPM" class="logo">
+                    <button class="menu-option" onclick="location.href='@Url.Action("Index", "Home")'">
+                        <p class="menu-text">Home</p>
+                    </button>
+                    <button class="menu-option" onclick="location.href='@Url.Action("Index", "Parecer")'">
+                        <p class="menu-text">Pareceres</p>
+                    </button>
+                    <button class="menu-option" onclick="location.href='@Url.Action("Index", "Submit")'">
+                        <p class="menu-text">Submissão</p>
+                    </button>
+                    <button class="menu-option" onclick="location.href='@Url.Action("Index", "User")'">
+                        <p class="menu-text">Cadastro</p>
+                    </button>
+                    <button class="menu-option" onclick="location.href='@Url.Action("Index", "Register")'">
+                        <p class="menu-text">Grupos</p>
+                    </button>
+                    <button class="menu-option" onclick="location.href='@Url.Action("Index", "Report")'">
+                        <p class="menu-text">Relatórios</p>
+                    </button>
+                    <button class="menu-option">
+                        <p class="menu-text">Sair</p>
+                    </button>
+                </div>
+
+                <div class="col-md-10 height-80">
+                    @RenderBody()
+                </div>
+            </div>
         </div>
-        <!-- End page wrapper-->
-    </div>
-    <!-- End wrapper-->
-    <environment names="Development">
-        <script src="~/lib_bower/jquery/dist/jquery.js"></script>
-        <script src="~/js/popper.min.js"></script>
-        <script src="~/lib_bower/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/lib_bower/metisMenu/dist/metisMenu.js"></script>
-        <script src="~/lib_bower/slimScroll/jquery.slimscroll.js"></script>
-        <script src="~/lib_bower/pace/pace.js"></script>
-        <script src="~/js/script.js"></script>
-        <script src="~/js/plugins/steps/jquery.steps.min.js"></script>
-        <!-- Only for demo purpose -->
-        <script src="~/js/skin.config.js"></script>
-        <!-- Select2 -->
-        <script src="~/js/plugins/select2/select2.full.min.js"></script>
-        <script src="~/lib_bower/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="~/js/plugins/dataTables/datatables.min.js"></script>
-        <script src="~/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+    </section>
 
-        <script src="~/js/plugins/iCheck/icheck.min.js"></script>
-        <script src="~/js/plugins/steps/jquery.steps.min.js"></script>
-        <script src="~/js/plugins/mask/jquery.mask.js"></script>
-        <script src="~/js/plugins/datapicker/bootstrap-datepicker.js"></script>
-        <script src="~/js/plugins/datapicker/ptBR.js"></script>
-        <script src="~/js/plugins/moment/moment.js"></script>
 
-    </environment>
-    <environment names="Staging,Production">
-        <script src="~/lib_bower/jquery/dist/jquery.js"></script>
-        <script src="~/js/popper.min.js"></script>
-        <script src="~/lib_bower/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/lib_bower/metisMenu/dist/metisMenu.js"></script>
-        <script src="~/lib_bower/slimScroll/jquery.slimscroll.js"></script>
-        <script src="~/lib_bower/pace/pace.js"></script>
-        <script src="~/js/script.js"></script>
-        <!-- Only for demo purpose -->
-        <script src="~/js/skin.config.js"></script>
-        <!-- Select2 -->
-        <script src="~/js/plugins/select2/select2.full.min.js"></script>
-        <script src="~/lib_bower/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="~/js/plugins/dataTables/datatables.min.js"></script>
-        <script src="~/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
 
-        <script src="~/js/plugins/steps/jquery.steps.min.js"></script>
-        <script src="~/js/plugins/mask/jquery.mask.js"></script>
-        <script src="~/js/plugins/datapicker/bootstrap-datepicker.js"></script>
-        <script src="~/js/plugins/moment/moment.js"></script>
 
-    </environment>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
