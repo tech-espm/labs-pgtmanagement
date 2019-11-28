@@ -37,6 +37,9 @@ namespace PGTManagement
             services.AddSingleton(instance => appSetting);
 
             services.AddTransient<IUserClient, UserClient>();
+            services.AddTransient<IGroupClient, GroupClient>();
+            services.AddTransient<IStudentClient, StudentClient>();
+            services.AddTransient<IReviewClient, ReviewClient>();
 
             string StorageConnectionString = Configuration["StorageConnectionString"];
             services.AddTransient(instance => new StorageService(StorageConnectionString));

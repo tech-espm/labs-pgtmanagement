@@ -20,11 +20,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <None Include="wwwroot\Scripts\all.js" />
     <None Include="wwwroot\Scripts\bootstrap.bundle.js" />
     <None Include="wwwroot\Scripts\bootstrap.bundle.js.map" />
