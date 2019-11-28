@@ -53,3 +53,23 @@
     </div>
 </div>
 
+<script>
+    $.ajax({
+        url: 'group/get'
+    }).done(function (data) {
+        var mapdata = $.map(data, function (obj) {
+            return { id: obj.groupID, text: obj.name };
+        });
+
+        if ($(".select2_group").val() == null) {
+
+            $(".select2_group").select2({
+                data: mapdata,
+                width: 'resolve',
+                allowClear: true
+            });
+        } else {
+            $(".select2_group").select2('destroy').empty().select2({ data: mapdata });
+        }
+    });
+</script>

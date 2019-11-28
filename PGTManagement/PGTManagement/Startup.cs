@@ -36,6 +36,9 @@ namespace PGTManagement
             AppSetting appSetting = Configuration.Get<AppSetting>();
             services.AddSingleton(instance => appSetting);
 
+            services.AddTransient<IGroupClient, GroupClient>();
+            services.AddTransient<IReviewClient, ReviewClient>();
+            services.AddTransient<IStudentClient, StudentClient>();
             services.AddTransient<IUserClient, UserClient>();
 
             string StorageConnectionString = Configuration["StorageConnectionString"];
