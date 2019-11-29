@@ -10,7 +10,6 @@ namespace PGTManagement.Gateway.PGTData.Results
         public int StudentID { get; set; }
         public string StudentName { get; set; }
         public int StudentRA { get; set; }
-
         public int GroupID { get; set; }
     }
 }

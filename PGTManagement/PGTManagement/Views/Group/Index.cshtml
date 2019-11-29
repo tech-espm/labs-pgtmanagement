@@ -57,7 +57,6 @@
     $.ajax({
         url: 'student/getAll'
     }).done(function (data) {
-        console.log(data);
         var mapdata = $.map(data, function (obj) {
             return { id: obj.studentID, text: obj.studentName };
         });
@@ -75,4 +74,26 @@
             $(".select2_student").select2('destroy').empty().select2({ data: mapdata });
         }
     });
+
+    $.ajax({
+        url: 'user/getAll'
+    }).done(function (data) {
+        var mapdata = $.map(data, function (obj) {
+            return { id: obj.userID, text: obj.userName };
+        });
+
+        if ($(".select2_user").val() == null) {
+
+            $(".select2_user").select2({
+                data: mapdata,
+                width: 'resolve',
+                allowClear: true
+            });
+
+            $(".select2_user").select2('destroy');
+        } else {
+            $(".select2_user").select2('destroy').empty().select2({ data: mapdata });
+        }
+    });
+
 </script>

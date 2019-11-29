@@ -28,17 +28,17 @@ namespace PGTManagement.Controllers
 
         public async Task<IActionResult> GetAll()
         {
-            var usuarios = await _userClient.GetAll();
+            var users = await _userClient.GetAll();
 
-            return Json(usuarios);
+            return Json(users);
         }
 
         public async Task<IActionResult> Get(int UserID)
         {
 
-            var usuarios = await _userClient.Get(UserID);
+            var users = await _userClient.Get(UserID);
 
-            return Json(usuarios);
+            return Json(users);
         }
 
         [HttpPost]

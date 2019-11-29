@@ -35,7 +35,6 @@
     $.ajax({
         url: 'user/get'
     }).done(function (data) {
-
         var mapdata = $.map(data, function (obj) {
             return { id: obj.userID, text: obj.name };
         });

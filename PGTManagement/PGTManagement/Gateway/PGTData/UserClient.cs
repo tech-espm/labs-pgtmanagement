@@ -27,12 +27,10 @@ namespace PGTManagement.Gateway.PGTData
         {
             try
             {
-                string URlQuery = ApiEndPoint;
-
-                var result = await WebClientOfT<List<UserResult>>.GetAsync(URlQuery);
+                var result = await WebClientOfT<List<UserResult>>.GetAsync(ApiEndPoint);
                 return result;
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -49,7 +47,7 @@ namespace PGTManagement.Gateway.PGTData
                 return result;
 
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -63,7 +61,7 @@ namespace PGTManagement.Gateway.PGTData
                 return result;
 
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

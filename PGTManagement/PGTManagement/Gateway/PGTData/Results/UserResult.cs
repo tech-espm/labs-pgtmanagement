@@ -7,5 +7,8 @@ namespace PGTManagement.Gateway.PGTData.Results
 {
     public class UserResult
     {
+        public int UserID { get; set; }
+        public string UserName { get; set; }
+        public int UserTypeID { get; set; }
     }
 }
