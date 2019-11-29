@@ -25,10 +25,24 @@ namespace PGTManagement.Controllers
             return View();
         }
 
+        public async Task<IActionResult> GetAll()
+        {
+            var students = await _studentClient.GetAll();
+
+            return Json(students);
+        }
+
         public async Task<IActionResult> Get(int StudentID)
         {
 
             var students = await _studentClient.Get(StudentID);
+
+            return Json(students);
+        }
+
+        public async Task<IActionResult> GetByGroup(int GroupID)
+        {
+            var students = await _studentClient.GetByGroup(GroupID);
 
             return Json(students);
         }

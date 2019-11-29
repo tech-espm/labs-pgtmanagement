@@ -23,6 +23,21 @@ namespace PGTManagement.Gateway.PGTData
             ApiEndPoint = configuration.PGTData + "/api/Student";
         }
 
+        public async Task<List<StudentResult>> GetAll()
+        {
+            try
+            {
+                var result = await WebClientOfT<List<StudentResult>>.GetAsync(ApiEndPoint);
+
+                return result;
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
         public async Task<List<StudentResult>> Get(int StudentID)
         {
             try
@@ -33,6 +48,21 @@ namespace PGTManagement.Gateway.PGTData
                 var result = await WebClientOfT<List<StudentResult>>.GetAsync(URlQuery);
                 return result;
 
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<List<StudentResult>> GetByGroup(int GroupID)
+        {
+            try
+            {
+                string URlQuery = ApiEndPoint + "?GroupID=" + GroupID;
+
+                var result = await WebClientOfT<List<StudentResult>>.GetAsync(URlQuery);
+                return result;
             }
             catch (System.Exception ex)
             {

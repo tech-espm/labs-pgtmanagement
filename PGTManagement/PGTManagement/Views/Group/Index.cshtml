@@ -14,7 +14,7 @@
             <select class="form-elements-specs select2_campus">
             </select>
             <label class="form-label">Alunos</label>
-            <select class="form-elements-specs">
+            <select class="form-elements-specs select2_student">
             </select>
             <label class="form-label">Orientador</label>
             <select class="form-elements-specs">
@@ -36,7 +36,6 @@
     $.ajax({
         url: 'campus/getAll'
     }).done(function (data) {
-        console.log(data);
         var mapdata = $.map(data, function (obj) {
             return { id: obj.campusID, text: obj.campusName };
         });
@@ -52,6 +51,28 @@
             $(".select2_campus").select2('destroy');
         } else {
             $(".select2_campus").select2('destroy').empty().select2({ data: mapdata });
+        }
+    });
+
+    $.ajax({
+        url: 'student/getAll'
+    }).done(function (data) {
+        console.log(data);
+        var mapdata = $.map(data, function (obj) {
+            return { id: obj.studentID, text: obj.studentName };
+        });
+
+        if ($(".select2_student").val() == null) {
+
+            $(".select2_student").select2({
+                data: mapdata,
+                width: 'resolve',
+                allowClear: true
+            });
+
+            $(".select2_student").select2('destroy');
+        } else {
+            $(".select2_student").select2('destroy').empty().select2({ data: mapdata });
         }
     });
 </script>
