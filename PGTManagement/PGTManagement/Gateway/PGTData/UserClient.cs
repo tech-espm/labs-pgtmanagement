@@ -23,6 +23,21 @@ namespace PGTManagement.Gateway.PGTData
             ApiEndPoint = configuration.PGTData + "/api/User";
         }
 
+        public async Task<List<UserResult>> GetAll()
+        {
+            try
+            {
+                string URlQuery = ApiEndPoint;
+
+                var result = await WebClientOfT<List<UserResult>>.GetAsync(URlQuery);
+                return result;
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<List<UserResult>> Get(int UserID)
         {
             try

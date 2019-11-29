@@ -10,41 +10,20 @@
         <form>
             <label class="form-label">Nome do Grupo</label>
             <input class="form-elements-specs" name="group-name" id="group" type="text" />
-            <label class="form-label">Curso</label>
-            <select class="form-elements-specs">
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
-            </select>
             <label class="form-label">Campus</label>
-            <select class="form-elements-specs">
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
+            <select class="form-elements-specs select2_campus">
             </select>
             <label class="form-label">Alunos</label>
             <select class="form-elements-specs">
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
             </select>
             <label class="form-label">Orientador</label>
             <select class="form-elements-specs">
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
             </select>
             <label class="form-label">Parecerista 1</label>
             <select class="form-elements-specs">
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
             </select>
             <label class="form-label">Parecerista 2</label>
             <select class="form-elements-specs">
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
             </select>
             <button class="form-confirm">Confimar</button>
             <button class="form-cancel">Cancel</button>
@@ -55,21 +34,24 @@
 
 <script>
     $.ajax({
-        url: 'group/get'
+        url: 'campus/getAll'
     }).done(function (data) {
+        console.log(data);
         var mapdata = $.map(data, function (obj) {
-            return { id: obj.groupID, text: obj.name };
+            return { id: obj.campusID, text: obj.campusName };
         });
 
-        if ($(".select2_group").val() == null) {
+        if ($(".select2_campus").val() == null) {
 
-            $(".select2_group").select2({
+            $(".select2_campus").select2({
                 data: mapdata,
                 width: 'resolve',
                 allowClear: true
             });
+
+            $(".select2_campus").select2('destroy');
         } else {
-            $(".select2_group").select2('destroy').empty().select2({ data: mapdata });
+            $(".select2_campus").select2('destroy').empty().select2({ data: mapdata });
         }
     });
 </script>

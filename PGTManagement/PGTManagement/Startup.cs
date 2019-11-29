@@ -40,6 +40,7 @@ namespace PGTManagement
             services.AddTransient<IReviewClient, ReviewClient>();
             services.AddTransient<IStudentClient, StudentClient>();
             services.AddTransient<IUserClient, UserClient>();
+            services.AddTransient<ICampusClient, CampusClient>();
 
             string StorageConnectionString = Configuration["StorageConnectionString"];
             services.AddTransient(instance => new StorageService(StorageConnectionString));

@@ -25,6 +25,13 @@ namespace PGTManagement.Controllers
             return View();
         }
 
+        public async Task<IActionResult> GetAll()
+        {
+            var groups = await _groupClient.GetAll();
+
+            return Json(groups);
+        }
+
         public async Task<IActionResult> Get(int GroupID)
         {
 

@@ -26,6 +26,13 @@ namespace PGTManagement.Controllers
             return View();
         }
 
+        public async Task<IActionResult> GetAll()
+        {
+            var usuarios = await _userClient.GetAll();
+
+            return Json(usuarios);
+        }
+
         public async Task<IActionResult> Get(int UserID)
         {
 

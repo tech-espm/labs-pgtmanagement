@@ -23,6 +23,21 @@ namespace PGTManagement.Gateway.PGTData
             ApiEndPoint = configuration.PGTData + "/api/Group";
         }
 
+        public async Task<List<GroupResult>> GetAll()
+        {
+            try
+            {
+                string URlQuery = ApiEndPoint;
+
+                var result = await WebClientOfT<List<GroupResult>>.GetAsync(URlQuery);
+                return result;
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<List<GroupResult>> Get(int GroupID)
         {
             try
