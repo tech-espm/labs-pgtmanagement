@@ -7,26 +7,78 @@
 </div>
 <div class="page-content">
     <div class="container mb-3 mt-3">
-        <form>
-            <label class="form-label">Grupo</label>
-            <select class="form-elements-specs" id="PgtGroup">
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
+        <form id="form">
+            <label class="form-label">Usuário</label>
+            <select class="form-elements-specs select2_user" id="user">
             </select>
             <input class="inputfile" name="file" id="file" type="file"/>
             <label class="form-label form-file-send" for="file">Arquivo</label>
             <label class="form-label">Anotações</label>
-            <textarea class="form-elements-specs form-text-area" id="Notes"></textarea>
+            <textarea class="form-elements-specs form-text-area" id="notes"></textarea>
             <label class="form-label">Etapa</label>
-            <select class="form-elements-specs">
-                <option>Qualificação</option>
-                <option>Defesa</option>
+            <select class="form-elements-specs" id="stage">
+                <option value=1>Qualificação</option>
+                <option value=2>Defesa</option>
             </select>
-            <button class="form-confirm">Confimar</button>
+            <button class="form-confirm" type="submit">Confimar</button>
             <button class="form-cancel">Cancel</button>
             <div class="form-space"></div>
         </form>
     </div>
 </div>
 
+<script>
+    $.ajax({
+        url: 'user/getAll'
+    }).done(function (data) {
+        var mapdata = $.map(data, function (obj) {
+            return { id: obj.userID, text: obj.userName };
+        });
+
+        if ($(".select2_user").val() == null) {
+
+            $(".select2_user").select2({
+                data: mapdata,
+                width: 'resolve',
+                allowClear: true
+            });
+
+            $(".select2_user").select2('destroy');
+        } else {
+            $(".select2_user").select2('destroy').empty().select2({ data: mapdata });
+        }
+    });
+
+    document.getElementById('form').onsubmit = (e) => {
+        var user_id = parseInt(document.getElementById('user').value);
+        var notes = String(document.getElementById('notes').value);
+        var stage = parseInt(document.getElementById('stage').value);
+
+        var jaysom = new Object();
+
+        jaysom.ReviewContent = "Null";
+        jaysom.ReviewRelevance = "Null";
+        jaysom.ReviewResearch = "Null";
+        jaysom.ReviewMemorial = "Null";
+        jaysom.ReviewAccording = "Null";
+        jaysom.FileID = 10;
+        jaysom.ReviewTypeID = stage;
+        jaysom.UserID = user_id;
+
+        $.ajax({
+            url: 'review/create',
+            type: "POST",
+            contentType: "application/json",
+            processData: false,
+            data: JSON.stringify(jaysom),
+            cache: false,
+            success: (data) => {
+                alert('Cadastrado com sucesso!')
+            },
+            error: (request, status, error) => {
+                alert('Um erro ocorreu durante o cadastro!');
+            }
+        });
+        return false;
+    };
+</script>
