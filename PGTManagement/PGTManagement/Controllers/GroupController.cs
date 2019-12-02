@@ -41,7 +41,8 @@ namespace PGTManagement.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(GroupRequest request)
+        [Consumes("application/json", "application/json-patch+json", "multipart/form-data")]
+        public async Task<IActionResult> Create([FromBody]GroupRequest request)
         {
             try
             {

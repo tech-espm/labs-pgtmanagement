@@ -33,7 +33,8 @@ namespace PGTManagement.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(ReviewRequest request)
+        [Consumes("application/json", "application/json-patch+json", "multipart/form-data")]
+        public async Task<IActionResult> Post([FromBody]ReviewRequest request)
         {
 
             try

@@ -7,48 +7,154 @@
 </div>
 <div class="page-content">
     <div class="container mb-3 mt-3">
-        <form>
+        <form id="form">
             <label class="form-label">Nome Completo</label>
-            <input class="form-elements-specs" name="group-name" id="UserName" type="text" />
+            <input class="form-elements-specs" id="name" type="text" />
             <label class="form-label">Registro</label>
-            <input class="form-elements-specs" name="group-name" id="UserRegister" type="text" />
+            <input class="form-elements-specs" id="register" type="text" />
             <label class="form-label">Tipo de Usuário</label>
-            <select class="form-elements-specs" id="UserType">
-                <option>Orientador</option>
-                <option>Professor</option>
-                <option>Estudante</option>
+            <select class="form-elements-specs" id="type" onclick=studentIdentify()>
+                <option value=2>Orientador</option>
+                <option value=3>Professor</option>
+                <option value=4>Estudante</option>
             </select>
             <label class="form-label">Campus</label>
-            <select class="select2_user" id="sel_user" style="width: 100%; text-transform:uppercase">
-            </select>
-            <label class="form-label">Email</label>
-            <input class="form-elements-specs" name="group-name" id="UserEmail" type="text" />
-            <label class="form-label">Senha</label>
-            <input class="form-elements-specs" name="group-name" id="UserPassword" type="text" />
-            <button class="form-confirm" id="ConfirmUser">Confimar</button>
+            <select class="form-elements-specs select2_campus" id="campus"></select>
+            <label class="form-label">Grupo</label>
+            <select class="form-elements-specs select2_group" id="group"></select>
+            <label class="form-label" id="emailLabel">Email</label>
+            <input class="form-elements-specs" id="email" type="text" />
+            <label class="form-label" id="passwordLabel">Senha</label>
+            <input class="form-elements-specs" id="password" type="text" />
+            <button class="form-confirm" type="submit">Confimar</button>
             <button class="form-cancel">Cancel</button>
             <div class="form-space"></div>
         </form>
     </div>
 </div>
 <script>
+    function studentIdentify() {
+        var password = document.getElementById("password");
+        var passwordLabel = document.getElementById("passwordLabel");
+        var email = document.getElementById("email");
+        var emailLabel = document.getElementById("emailLabel");
+
+        if (document.getElementById("type").value == 4) {
+            password.style.display = "none";
+            passwordLabel.style.display = "none";
+            email.style.display = "none";
+            emailLabel.style.display = "none";
+            return;
+        }
+        password.style.display = "inline-block";
+        passwordLabel.style.display = "inline-block";
+        email.style.display = "inline-block";
+        emailLabel.style.display = "inline-block";
+    }
+
     $.ajax({
-        url: 'user/get'
+        url: 'campus/getAll'
     }).done(function (data) {
         var mapdata = $.map(data, function (obj) {
-            return { id: obj.userID, text: obj.name };
+            return { id: obj.campusID, text: obj.campusName };
         });
 
-        if ($(".select2_user").val() == null) {
+        if ($(".select2_campus").val() == null) {
 
-            $(".select2_user").select2({
+            $(".select2_campus").select2({
                 data: mapdata,
                 width: 'resolve',
                 allowClear: true
             });
+
+            $(".select2_campus").select2('destroy');
         } else {
-            $(".select2_user").select2('destroy').empty().select2({ data: mapdata });
+            $(".select2_campus").select2('destroy').empty().select2({ data: mapdata });
         }
     });
-</script>
 
+    $.ajax({
+        url: 'group/getAll'
+    }).done(function (data) {
+        var mapdata = $.map(data, function (obj) {
+            return { id: obj.groupID, text: obj.groupName };
+        });
+
+        if ($(".select2_group").val() == null) {
+
+            $(".select2_group").select2({
+                data: mapdata,
+                width: 'resolve',
+                allowClear: true
+            });
+
+            $(".select2_group").select2('destroy');
+        } else {
+            $(".select2_group").select2('destroy').empty().select2({ data: mapdata });
+        }
+    });
+
+    document.getElementById('form').onsubmit = (e) => {
+        var user_name = String(document.getElementById('name').value);
+        var user_register = parseInt(document.getElementById('register').value);
+        var user_email = String(document.getElementById('email').value);
+        var user_password = String(document.getElementById('password').value);
+        var campus_id = parseInt(document.getElementById('campus').value);
+        var user_type = parseInt(document.getElementById('type').value);
+        var group_id = parseInt(document.getElementById('group').value);
+
+        if (user_type == 4) {
+            var jaysom = new Object();
+
+            jaysom.StudentName = user_name;
+            jaysom.StudentRA = user_register;
+            jaysom.GroupID = group_id;
+            jaysom.CampusID = campus_id;
+
+            console.log(JSON.stringify(jaysom));
+
+            $.ajax({
+                url: 'student/create',
+                type: "POST",
+                contentType: "application/json",
+                processData: false,
+                data: JSON.stringify(jaysom),
+                cache: false,
+                success: (data) => {
+                    alert('Cadastrado com sucesso!')
+                },
+                error: (request, status, error) => {
+                    alert('Um erro ocorreu durante o cadastro!');
+                }
+            });
+        } else {
+            var jaysom = new Object();
+
+            jaysom.UserName = user_name;
+            jaysom.UserRegister = user_register;
+            jaysom.UserEmail = user_email;
+            jaysom.UserPassword = user_password;
+            jaysom.CampusID = campus_id;
+            jaysom.UserTypeID = user_type;
+            jaysom.GroupID = group_id;
+
+            console.log(JSON.stringify(jaysom));
+
+            $.ajax({
+                url: 'user/create',
+                type: "POST",
+                contentType: "application/json",
+                processData: false,
+                data: JSON.stringify(jaysom),
+                cache: false,
+                success: (data) => {
+                    alert('Cadastrado com sucesso!')
+                },
+                error: (request, status, error) => {
+                    alert('Um erro ocorreu durante o cadastro!');
+                }
+            });
+        }
+        return false;
+    };
+</script>

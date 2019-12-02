@@ -9,13 +9,20 @@
     <div class="container mb-3 mt-3">
         <form id="form">
             <label class="form-label">Nome do Grupo</label>
-            <input class="form-elements-specs" name="group-name" id="group" type="text" />
+            <input class="form-elements-specs" id="group" type="text" />
             <label class="form-label">Campus</label>
             <select class="form-elements-specs select2_campus" id="campus">
             </select>
             <label class="form-label">Curso</label>
             <select class="form-elements-specs" id="course">
-                <option value=1>Sistemas de Informação</option>
+                <option value="adm">Administração</option>
+                <option value="ciso">Ciências Sociais e do Consumo</option>
+                <option value="cine">Cinema e Audiovisual</option>
+                <option value="design">Design</option>
+                <option value="jorn">Jornalismo</option>
+                <option value="pp">Publicidade e Propaganda</option>
+                <option value="ri">Relações Internacionais</option>
+                <option value="tech">TECH</option>
             </select>
             <!--<label class="form-label">Alunos</label>
             <select class="students form-elements-specs select2_student">
@@ -56,7 +63,7 @@
         } else {
             $(".select2_campus").select2('destroy').empty().select2({ data: mapdata });
         }
-        });
+    });
     /*
     $.ajax({
         url: 'student/getAll'
@@ -126,25 +133,27 @@
         });*/
 
     document.getElementById('form').onsubmit = (e) => {
-        group_name = document.getElementById('group').value;
-        group_course = document.getElementById('course')[0].value;
-        campus_id = document.getElementById('campus')[0].value;
+        group_name = String(document.getElementById('group').value);
+        group_course = String(document.getElementById('course').value);
+        campus_id = parseInt(document.getElementById('campus').value);
+
+        var jaysom = new Object();
+
+        jaysom.GroupName = group_name;
+        jaysom.GroupCourse = group_course;
+        jaysom.CampusID = campus_id;
 
         $.ajax({
             url: 'group/create',
             type: "POST",
-            data: {
-                groupName: group_name,
-                groupCourse: group_course,
-                campusID: campus_id
-            },
+            contentType: "application/json",
             processData: false,
+            data: JSON.stringify(jaysom),
             cache: false,
-            contentType: false,
-            success: function (data) {
+            success: (data) => {
                 alert('Cadastrado com sucesso!')
             },
-            error: function (request, status, error) {
+            error: (request, status, error) => {
                 alert('Um erro ocorreu durante o cadastro!');
             }
         });
