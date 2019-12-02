@@ -7,25 +7,29 @@
 </div>
 <div class="page-content">
     <div class="container mb-3 mt-3">
-        <form>
+        <form id="form">
             <label class="form-label">Nome do Grupo</label>
             <input class="form-elements-specs" name="group-name" id="group" type="text" />
             <label class="form-label">Campus</label>
-            <select class="form-elements-specs select2_campus">
+            <select class="form-elements-specs select2_campus" id="campus">
             </select>
-            <label class="form-label">Alunos</label>
-            <select class="form-elements-specs select2_student">
+            <label class="form-label">Curso</label>
+            <select class="form-elements-specs" id="course">
+                <option value=1>Sistemas de Informação</option>
+            </select>
+            <!--<label class="form-label">Alunos</label>
+            <select class="students form-elements-specs select2_student">
             </select>
             <label class="form-label">Orientador</label>
-            <select class="form-elements-specs">
+            <select class="coords form-elements-specs select2_coord">
             </select>
             <label class="form-label">Parecerista 1</label>
-            <select class="form-elements-specs">
+            <select class="reviewers_1 form-elements-specs select2_peer_reviewer">
             </select>
             <label class="form-label">Parecerista 2</label>
-            <select class="form-elements-specs">
-            </select>
-            <button class="form-confirm">Confimar</button>
+            <select class="reviewers_2 form-elements-specs select2_peer_reviewer">
+            </select>-->
+            <button class="form-confirm" type="submit">Confimar</button>
             <button class="form-cancel">Cancel</button>
             <div class="form-space"></div>
         </form>
@@ -52,8 +56,8 @@
         } else {
             $(".select2_campus").select2('destroy').empty().select2({ data: mapdata });
         }
-    });
-
+        });
+    /*
     $.ajax({
         url: 'student/getAll'
     }).done(function (data) {
@@ -79,21 +83,71 @@
         url: 'user/getAll'
     }).done(function (data) {
         var mapdata = $.map(data, function (obj) {
-            return { id: obj.userID, text: obj.userName };
+            if (obj.userTypeID == 1) {
+                return { id: obj.userID, text: obj.userName };
+            }
         });
 
-        if ($(".select2_user").val() == null) {
+        if ($(".select2_coord").val() == null) {
 
-            $(".select2_user").select2({
+            $(".select2_coord").select2({
                 data: mapdata,
                 width: 'resolve',
                 allowClear: true
             });
 
-            $(".select2_user").select2('destroy');
+            $(".select2_coord").select2('destroy');
         } else {
-            $(".select2_user").select2('destroy').empty().select2({ data: mapdata });
+            $(".select2_coord").select2('destroy').empty().select2({ data: mapdata });
         }
     });
 
+    $.ajax({
+        url: 'user/getAll'
+    }).done(function (data) {
+        var mapdata = $.map(data, function (obj) {
+            if (obj.userTypeID == 2) {
+                return { id: obj.userID, text: obj.userName };
+            }
+        });
+
+        if ($(".select2_peer_reviewer").val() == null) {
+
+            $(".select2_peer_reviewer").select2({
+                data: mapdata,
+                width: 'resolve',
+                allowClear: true
+            });
+
+            $(".select2_peer_reviewer").select2('destroy');
+        } else {
+            $(".select2_peer_reviewer").select2('destroy').empty().select2({ data: mapdata });
+        }
+        });*/
+
+    document.getElementById('form').onsubmit = (e) => {
+        group_name = document.getElementById('group').value;
+        group_course = document.getElementById('course')[0].value;
+        campus_id = document.getElementById('campus')[0].value;
+
+        $.ajax({
+            url: 'group/create',
+            type: "POST",
+            data: {
+                groupName: group_name,
+                groupCourse: group_course,
+                campusID: campus_id
+            },
+            processData: false,
+            cache: false,
+            contentType: false,
+            success: function (data) {
+                alert('Cadastrado com sucesso!')
+            },
+            error: function (request, status, error) {
+                alert('Um erro ocorreu durante o cadastro!');
+            }
+        });
+        return false;
+    };
 </script>
